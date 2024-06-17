@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    kotlin("plugin.serialization") version "1.5.0"
+    kotlin("plugin.serialization") version "1.6.10"
 }
 
 kotlin {
@@ -83,3 +83,4 @@ android {
 dependencies {
     implementation(libs.firebase.crashlytics.buildtools)
 }
+///

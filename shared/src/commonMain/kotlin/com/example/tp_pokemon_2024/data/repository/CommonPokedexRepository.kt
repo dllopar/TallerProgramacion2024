@@ -31,6 +31,7 @@ class CommonPokedexRepository {
                 Json {
 
                     ignoreUnknownKeys = true
+                    coerceInputValues = true
                 }
             )
         }
