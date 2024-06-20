@@ -10,3 +10,9 @@ data class PokedexResults(
     @SerialName(value = "url")
     val url: String
 )
+
+fun Pokedex.toPokedexResultsList(): List<PokedexResults> {
+    return results.map { pokemon ->
+        PokedexResults(name = pokemon.name, url = pokemon.url)
+    }
+}

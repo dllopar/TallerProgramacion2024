@@ -1,50 +1,31 @@
 package com.example.tp_pokemon_2024.data.repository
 
-import com.example.pokedex.Database
-import com.example.pokedex.PokemonQueries
-import com.example.tp_pokemon_2024.DatabaseDriverFactory
 import com.example.tp_pokemon_2024.data.Pokedex
-import com.example.tp_pokemon_2024.initLogger
-import io.github.aakira.napier.Napier
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.request.get
-import io.ktor.serialization.kotlinx.json.json
-//import io.ktor.util.logging.Logger
-import io.ktor.client.plugins.logging.Logger
-import kotlinx.serialization.json.Json
+class CommonPokedexRepository(
+    private val apiRepository: ApiPokedexRepository,
+    private val dbRepository: PokedexDBrepository
+) {
 
-class CommonPokedexRepository {
-
-    private val httpClient = HttpClient {
-        install(Logging) {
-            level = LogLevel.ALL
-            logger = object : Logger {
-                override fun log(message: String) {
-                    Napier.v(tag = "HttpClient", message = message)
-                }
-            }
+    suspend fun getPokedex(): Pokedex {
+        return try {
+            // Obtener datos desde la API
+            val pokedex = apiRepository.getPokedex()
+            // Guardar en la base de datos local
+            dbRepository.addAllPokemon(pokedex.results)
+            pokedex
+        } catch (e: Exception) {
+            // Si hay un error al obtener desde la API, cargar desde la base de datos
+            loadFromDatabase()
         }
-        install(ContentNegotiation) {
+    }
 
-            json(
-                Json {
-
-                    ignoreUnknownKeys = true
-                    coerceInputValues = true
-                }
-            )
+    private suspend fun loadFromDatabase(): Pokedex {
+        val pokemonList = dbRepository.getAllPokemon()
+        return if (pokemonList.isNotEmpty()) {
+            Pokedex(results = pokemonList)
+        } else {
+            throw IllegalStateException("No data available in database")
         }
+    }
 
-    }.also {
-        initLogger()
-    }
-    suspend fun get() : Pokedex {
-        val result = httpClient.get("https://pokeapi.co/api/v2/pokemon/?limit=800"){
-        }.body<Pokedex>()
-        return result
-    }
 }
