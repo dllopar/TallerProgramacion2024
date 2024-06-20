@@ -1,5 +1,7 @@
 package com.example.tp_pokemon_2024
 
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import platform.UIKit.UIDevice
@@ -12,4 +14,10 @@ actual fun getPlatform(): Platform = IOSPlatform()
 
 actual fun initLogger(){
     Napier.base(DebugAntilog())
+}
+
+actual class DatabaseDriverFactory {
+    actual fun createDriver(): SqlDriver {
+        return NativeSqliteDriver(AppDatabase.Schema, "pokedex.db")
+    }
 }

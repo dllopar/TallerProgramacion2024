@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.5.0"
+    id("app.cash.sqldelight") version "2.0.1"
 }
 
 kotlin {
@@ -28,6 +29,7 @@ kotlin {
 
         val ktorVersion = "2.0.0"
         val napierVersion = "2.6.1"
+        val sqldligth = "2.0.1"
 
         commonMain {
             dependencies {
@@ -43,6 +45,10 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+                //SQLDligth
+                implementation("app.cash.sqldelight:sqlite-driver:$sqldligth")
+                implementation("app.cash.sqldelight:runtime:$sqldligth")
             }
         }
 
@@ -50,6 +56,8 @@ kotlin {
             dependencies {
                 // KTOR
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                //SQLDligth
+                implementation("app.cash.sqldelight:android-driver:$sqldligth")
             }
         }
 
@@ -57,6 +65,8 @@ kotlin {
             dependencies {
                 // KTOR
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                //SQLDligth
+                implementation("app.cash.sqldelight:native-driver:$sqldligth")
             }
         }
 
@@ -67,6 +77,14 @@ kotlin {
         }
     }
 }
+sqldelight {
+    databases {
+        create("AppDatabase") {
+            packageName.set("com.example.pokedex")
+        }
+    }
+}
+
 
 android {
     namespace = "com.example.tp_pokemon_2024"
