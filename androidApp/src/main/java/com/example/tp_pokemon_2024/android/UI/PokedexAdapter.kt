@@ -38,14 +38,6 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
         return pokemonList.size
     }
 
-   /* fun updatePokedex(results: List<com.example.tp_pokemon_2024.data.PokedexResults>) {
-        pokemonList.clear()
-        if(results != null) {
-            pokemonList.addAll(results)
-        }
-        notifyDataSetChanged()
-    }*/
-
     fun updatePokedex(results: List<com.example.tp_pokemon_2024.data.PokedexResults>) {
     pokemonList.clear()
     if(results != null) {
