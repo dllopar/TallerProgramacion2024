@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization") version "1.6.10"
+    id("app.cash.sqldelight") version "2.0.1"
 }
 
 kotlin {
@@ -43,6 +44,8 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+
+                implementation(libs.sqlite.driver)
             }
         }
 
@@ -50,6 +53,8 @@ kotlin {
             dependencies {
                 // KTOR
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+
+                implementation(libs.android.driver)
             }
         }
 
@@ -64,6 +69,14 @@ kotlin {
             dependencies {
                 implementation(libs.kotlin.test)
             }
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.example.pokedex")
         }
     }
 }

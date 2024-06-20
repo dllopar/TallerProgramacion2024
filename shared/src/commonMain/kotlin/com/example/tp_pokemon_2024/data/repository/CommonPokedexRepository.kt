@@ -1,5 +1,8 @@
 package com.example.tp_pokemon_2024.data.repository
 
+import com.example.pokedex.Database
+import com.example.pokedex.PokemonQueries
+import com.example.tp_pokemon_2024.DatabaseDriverFactory
 import com.example.tp_pokemon_2024.data.Pokedex
 import com.example.tp_pokemon_2024.initLogger
 import io.github.aakira.napier.Napier
