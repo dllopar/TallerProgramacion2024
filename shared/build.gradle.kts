@@ -44,7 +44,7 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
-
+                //SQLDligth
                 implementation(libs.sqlite.driver)
             }
         }
