@@ -11,8 +11,3 @@ data class PokedexResults(
     val url: String
 )
 
-fun Pokedex.toPokedexResultsList(): List<PokedexResults> {
-    return results.map { pokemon ->
-        PokedexResults(name = pokemon.name, url = pokemon.url)
-    }
-}

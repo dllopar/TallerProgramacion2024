@@ -3,11 +3,10 @@ package com.example.tp_pokemon_2024.android.UI
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.tp_pokemon_2024.android.Data.PokedexResults
 import com.example.tp_pokemon_2024.android.R
-import com.example.tp_pokemon_2024.android.util.StringFormatter
 import com.example.tp_pokemon_2024.android.databinding.ItemPokedexBinding
 import com.example.tp_pokemon_2024.android.util.ImageBuilder
+import com.example.tp_pokemon_2024.android.util.changeFirstLetterToUppercaseAndDeleteMiddleDash
 import com.squareup.picasso.Picasso
 
 
@@ -24,8 +23,11 @@ class PokedexAdapter : RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder>() 
     override fun onBindViewHolder(holder: PokedexViewHolder, position: Int) {
         val pokemon = pokemonList[position]
 
+        /*holder.binding.titleTextView.text =
+            StringFormatter.changeFirstLetterToUppercaseAndDeleteMiddleDash(pokemon.name)*/
         holder.binding.titleTextView.text =
-            StringFormatter.changeFirstLetterToUppercaseAndDeleteMiddleDash(pokemon.name)
+            pokemon.name.changeFirstLetterToUppercaseAndDeleteMiddleDash()
+
 
         Picasso.get()
             .load(ImageBuilder.buildPokemonImageByUrl(pokemon.url))

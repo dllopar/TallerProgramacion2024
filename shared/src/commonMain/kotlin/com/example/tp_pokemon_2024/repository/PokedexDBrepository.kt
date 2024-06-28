@@ -1,4 +1,4 @@
-package com.example.tp_pokemon_2024.data.repository
+package com.example.tp_pokemon_2024.repository
 
 import com.example.pokedex.Database
 import com.example.tp_pokemon_2024.DatabaseDriverFactory
@@ -28,7 +28,12 @@ class PokedexDBrepository(databaseDriverFactory: DatabaseDriverFactory){
         return PokedexResults(name = mapName, url = mapUrl)
     }
 
-    fun addPokemon(pokemon : PokedexResults){
-        dbQuery.insertPokemon(name = pokemon.name, url = pokemon.url)
+    fun addPokemon(pokemon: PokedexResults) {
+        val existingPokemon = dbQuery.getPokemon(pokemon.name).executeAsOneOrNull()
+
+        if (existingPokemon == null) {
+            dbQuery.insertPokemon(name = pokemon.name, url = pokemon.url)
+        }
     }
+
 }

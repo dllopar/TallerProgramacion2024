@@ -2,9 +2,9 @@ package com.example.tp_pokemon_2024.android.UI
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.tp_pokemon_2024.data.repository.ApiPokedexRepository
-import com.example.tp_pokemon_2024.data.repository.CommonPokedexRepository
-import com.example.tp_pokemon_2024.data.repository.PokedexDBrepository
+import com.example.tp_pokemon_2024.repository.ApiPokedexRepository
+import com.example.tp_pokemon_2024.repository.CommonPokedexRepository
+import com.example.tp_pokemon_2024.repository.PokedexDBrepository
 
 class PokedexViewModelFactory(
     private val apiRepository: ApiPokedexRepository,

@@ -17,12 +17,10 @@ android {
     }
 
     buildFeatures {
-        //compose = true
+
         viewBinding = true
     }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-//    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -44,14 +42,12 @@ android {
 
 dependencies {
     implementation(project(":shared"))
-    val retrofit_version = "2.6.2"
+
     val coroutines_version = "1.3.9"
     val picasso_version = "2.71828"
     val lifecycle_version = "2.5.1"
 
-    // Retrofit
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
-    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")

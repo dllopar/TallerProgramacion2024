@@ -2,16 +2,12 @@ package com.example.tp_pokemon_2024.android.util
 
 import java.util.Locale
 
-object StringFormatter {
+fun String.changeFirstLetterToUppercaseAndDeleteMiddleDash(): String {
+    return this.changeFirstLetterToUppercase().replace("-", " ")
+}
 
-    fun changeFirstLetterToUppercaseAndDeleteMiddleDash(str: String): String {
-        return changeFirstLetterToUppercase(str).replace("-", " ")
+private fun String.changeFirstLetterToUppercase(): String {
+    return this.replaceFirstChar {
+        if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
     }
-
-    private fun changeFirstLetterToUppercase(str: String): String {
-        return str.replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-        }
-    }
-
 }

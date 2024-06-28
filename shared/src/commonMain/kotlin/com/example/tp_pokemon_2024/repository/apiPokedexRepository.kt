@@ -1,4 +1,4 @@
-package com.example.tp_pokemon_2024.data.repository
+package com.example.tp_pokemon_2024.repository
 
 import com.example.tp_pokemon_2024.data.Pokedex
 import com.example.tp_pokemon_2024.initLogger

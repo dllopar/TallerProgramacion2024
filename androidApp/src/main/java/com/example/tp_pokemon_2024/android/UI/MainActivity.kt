@@ -14,8 +14,8 @@ import com.example.tp_pokemon_2024.DatabaseDriverFactory
 
 import com.example.tp_pokemon_2024.android.databinding.ActivityMainBinding
 import com.example.tp_pokemon_2024.data.Pokedex
-import com.example.tp_pokemon_2024.data.repository.ApiPokedexRepository
-import com.example.tp_pokemon_2024.data.repository.PokedexDBrepository
+import com.example.tp_pokemon_2024.repository.ApiPokedexRepository
+import com.example.tp_pokemon_2024.repository.PokedexDBrepository
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
